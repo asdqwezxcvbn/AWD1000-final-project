@@ -1,0 +1,14 @@
+body {
+  background: #f8f9fa;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
