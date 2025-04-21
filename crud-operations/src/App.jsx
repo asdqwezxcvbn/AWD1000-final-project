@@ -64,16 +64,26 @@ function App() {
   );
 
   return (
-    <div className="container py-4">
-      <h1 className="text-center mb-4">📚 Book Manager</h1>
-      <input
-        type="text"
-        className="form-control mb-3"
-        placeholder="Search by title..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+    <div className="container py-5">
+      <h1 className="text-center text-primary mb-4">📚 Book Manager</h1>
+      
+      {/* Search Bar */}
+      <div className="row mb-3">
+        <div className="col-md-6 offset-md-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search by title..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+      </div>
+      
+      {/* Book Form */}
       <BookForm addBook={addBook} editBook={editBook} updateBook={updateBook} />
+      
+      {/* Book List */}
       <BookList books={filteredBooks} onDelete={deleteBook} onEdit={setEditBook} />
     </div>
   );
