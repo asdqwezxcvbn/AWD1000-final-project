@@ -72,7 +72,7 @@ function App() {
         <div className="col-md-6 offset-md-3">
           <input
             type="text"
-            className="form-control"
+            className="form-control shadow-sm"
             placeholder="Search by title..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -81,10 +81,20 @@ function App() {
       </div>
       
       {/* Book Form */}
-      <BookForm addBook={addBook} editBook={editBook} updateBook={updateBook} />
+      <div className="card mb-4">
+        <div className="card-body">
+          <h4 className="card-title">{editBook ? 'Edit Book' : 'Add New Book'}</h4>
+          <BookForm addBook={addBook} editBook={editBook} updateBook={updateBook} />
+        </div>
+      </div>
       
       {/* Book List */}
-      <BookList books={filteredBooks} onDelete={deleteBook} onEdit={setEditBook} />
+      <div className="card shadow">
+        <div className="card-body">
+          <h4 className="card-title">Book List</h4>
+          <BookList books={filteredBooks} onDelete={deleteBook} onEdit={setEditBook} />
+        </div>
+      </div>
     </div>
   );
 }

@@ -6,7 +6,7 @@ function BookList({ books, onDelete, onEdit }) {
 
   return (
     <div className="table-responsive">
-      <table className="table table-bordered table-striped">
+      <table className="table table-bordered table-striped table-hover">
         <thead className="table-light">
           <tr>
             <th>Title</th>
@@ -18,16 +18,24 @@ function BookList({ books, onDelete, onEdit }) {
         </thead>
         <tbody>
           {books.map((book) => (
-            <tr key={book.id}>
+            <tr key={book.id} className="align-middle">
               <td>{book.title}</td>
               <td>{book.author}</td>
               <td>{book.genre}</td>
               <td>{book.year}</td>
               <td>
-                <button className="btn btn-sm btn-warning me-2" onClick={() => onEdit(book)}>
+                <button
+                  className="btn btn-sm btn-warning me-2"
+                  onClick={() => onEdit(book)}
+                  title="Edit"
+                >
                   <FaEdit />
                 </button>
-                <button className="btn btn-sm btn-danger" onClick={() => onDelete(book.id)}>
+                <button
+                  className="btn btn-sm btn-danger"
+                  onClick={() => onDelete(book.id)}
+                  title="Delete"
+                >
                   <FaTrash />
                 </button>
               </td>
