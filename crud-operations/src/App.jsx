@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import BookForm from './components/BookForm'; // Ensure BookForm is imported correctly
+import BookForm from './components/BookForm';
 import BookList from './components/BookList';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
@@ -9,7 +9,6 @@ function App() {
   const [search, setSearch] = useState('');
   const [editBook, setEditBook] = useState(null);
 
-  // Load books from localStorage on initial render
   useEffect(() => {
     const storedBooks = JSON.parse(localStorage.getItem('books'));
     if (storedBooks && storedBooks.length > 0) {
@@ -41,9 +40,8 @@ function App() {
       setBooks(seedBooks);
       localStorage.setItem('books', JSON.stringify(seedBooks));
     }
-  }, []); // Only run once on component mount
+  }, []);
 
-  // Update localStorage whenever books state changes
   useEffect(() => {
     localStorage.setItem('books', JSON.stringify(books));
   }, [books]);
@@ -58,7 +56,7 @@ function App() {
 
   const updateBook = (updatedBook) => {
     setBooks(books.map((book) => (book.id === updatedBook.id ? updatedBook : book)));
-    setEditBook(null); // Clear editBook state after updating
+    setEditBook(null);
   };
 
   const filteredBooks = books.filter((book) =>
@@ -67,7 +65,7 @@ function App() {
 
   return (
     <div className="container py-5">
-      <h1 className="text-center text-primary mb-4">📚 Book Manager</h1>
+      <h1 className="text-center text-primary mb-4">📖 Book Manager 📖</h1>
       
       {/* Search Bar */}
       <div className="row mb-3">
