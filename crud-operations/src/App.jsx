@@ -9,6 +9,7 @@ function App() {
   const [search, setSearch] = useState('');
   const [editBook, setEditBook] = useState(null);
 
+  // Load books from localStorage on initial render
   useEffect(() => {
     const storedBooks = JSON.parse(localStorage.getItem('books'));
     if (storedBooks && storedBooks.length > 0) {
@@ -40,8 +41,9 @@ function App() {
       setBooks(seedBooks);
       localStorage.setItem('books', JSON.stringify(seedBooks));
     }
-  }, []);
+  }, []); // Only run once on component mount
 
+  // Update localStorage whenever books state changes
   useEffect(() => {
     localStorage.setItem('books', JSON.stringify(books));
   }, [books]);
@@ -56,7 +58,7 @@ function App() {
 
   const updateBook = (updatedBook) => {
     setBooks(books.map((book) => (book.id === updatedBook.id ? updatedBook : book)));
-    setEditBook(null);
+    setEditBook(null); // Clear editBook state after updating
   };
 
   const filteredBooks = books.filter((book) =>
@@ -83,7 +85,11 @@ function App() {
       {/* Book Form */}
       <div className="card shadow-sm mb-4">
         <div className="card-body">
-          <BookForm addBook={addBook} editBook={editBook} updateBook={updateBook} />
+          <BookForm 
+            addBook={addBook} 
+            editBook={editBook} 
+            updateBook={updateBook} 
+          />
         </div>
       </div>
       
@@ -91,7 +97,11 @@ function App() {
       <div className="card shadow">
         <div className="card-body">
           <h4 className="card-title">Book List</h4>
-          <BookList books={filteredBooks} onDelete={deleteBook} onEdit={setEditBook} />
+          <BookList 
+            books={filteredBooks} 
+            onDelete={deleteBook} 
+            onEdit={setEditBook} 
+          />
         </div>
       </div>
     </div>
