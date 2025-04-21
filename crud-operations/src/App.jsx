@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import BookForm from './components/BookForm';
+import BookForm from './components/BookForm'; // Ensure BookForm is imported correctly
 import BookList from './components/BookList';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
@@ -81,9 +81,8 @@ function App() {
       </div>
       
       {/* Book Form */}
-      <div className="card mb-4">
+      <div className="card shadow-sm mb-4">
         <div className="card-body">
-          <h4 className="card-title">{editBook ? 'Edit Book' : 'Add New Book'}</h4>
           <BookForm addBook={addBook} editBook={editBook} updateBook={updateBook} />
         </div>
       </div>
