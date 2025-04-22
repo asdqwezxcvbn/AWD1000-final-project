@@ -66,20 +66,7 @@ function App() {
   return (
     <div className="container py-5">
       <h1 className="text-center text-primary mb-4">📖 Book Manager 📖</h1>
-      
-      {/* Search Bar */}
-      <div className="row mb-3">
-        <div className="col-md-6 offset-md-3">
-          <input
-            type="text"
-            className="form-control shadow-sm"
-            placeholder="Search by title..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </div>
-      </div>
-      
+  
       {/* Book Form */}
       <div className="card shadow-sm mb-4">
         <div className="card-body">
@@ -90,11 +77,23 @@ function App() {
           />
         </div>
       </div>
-      
+  
       {/* Book List */}
-      <div className="card shadow">
+      <div className="card shadow mb-4">
         <div className="card-body">
           <h4 className="card-title">Book List</h4>
+  
+          {/* Search Input - Now inside this card */}
+          <div className="mb-3">
+            <input
+              type="text"
+              className="form-control shadow-sm"
+              placeholder="Search by title..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+  
           <BookList 
             books={filteredBooks} 
             onDelete={deleteBook} 

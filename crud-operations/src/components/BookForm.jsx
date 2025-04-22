@@ -24,55 +24,55 @@ function BookForm({ addBook, editBook, updateBook }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-4">
-      <div className="card shadow-sm">
-        <div className="card-body">
-          <h4 className="card-title text-center mb-4">
+    <form onSubmit={handleSubmit} class="mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title text-center mb-4">
             {editBook ? 'Edit Book' : 'Add New Book'}
           </h4>
-          <div className="row g-3">
-            <div className="col-md-3">
+          <div class="row g-3">
+            <div class="col-md-3">
               <input
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
-                className="form-control"
+                class="form-control"
                 placeholder="Title"
                 required
               />
             </div>
-            <div className="col-md-3">
+            <div class="col-md-3">
               <input
                 name="author"
                 value={formData.author}
                 onChange={handleChange}
-                className="form-control"
+                class="form-control"
                 placeholder="Author"
                 required
               />
             </div>
-            <div className="col-md-3">
+            <div class="col-md-3">
               <input
                 name="genre"
                 value={formData.genre}
                 onChange={handleChange}
-                className="form-control"
+                class="form-control"
                 placeholder="Genre"
                 required
               />
             </div>
-            <div className="col-md-2">
+            <div class="col-md-2">
               <input
                 name="year"
                 value={formData.year}
                 onChange={handleChange}
-                className="form-control"
+                class="form-control"
                 placeholder="Year"
                 required
               />
             </div>
-            <div className="col-md-1 d-grid">
-              <button type="submit" className="btn btn-primary btn-block mt-4">
+            <div class="col-md-1 d-grid">
+              <button type="submit" class="btn btn-primary btn-block mt-4">
                 {editBook ? 'Update' : 'Add'}
               </button>
             </div>
