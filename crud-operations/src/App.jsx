@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import BookForm from './components/BookForm';
 import BookList from './components/BookList';
 import { v4 as uuidv4 } from 'uuid';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
@@ -31,10 +32,73 @@ function App() {
         },
         {
           id: uuidv4(),
+          title: '1984',
+          author: 'George Orwell',
+          genre: 'Dystopian',
+          year: '1949'
+        },
+        {
+          id: uuidv4(),
+          title: 'Pride and Prejudice',
+          author: 'Jane Austen',
+          genre: 'Romance',
+          year: '1813'
+        },
+        {
+          id: uuidv4(),
           title: 'The Great Gatsby',
           author: 'F. Scott Fitzgerald',
-          genre: 'Classic',
+          genre: 'Fiction',
           year: '1925'
+        },
+        {
+          id: uuidv4(),
+          title: 'Moby-Dick',
+          author: 'Herman Melville',
+          genre: 'Adventure',
+          year: '1851'
+        },
+        {
+          id: uuidv4(),
+          title: 'Brave New World',
+          author: 'Aldous Huxley',
+          genre: 'Science Fiction',
+          year: '1932'
+        },
+        {
+          id: uuidv4(),
+          title: 'The Catcher in the Rye',
+          author: 'J.D. Salinger',
+          genre: 'Fiction',
+          year: '1951'
+        },
+        {
+          id: uuidv4(),
+          title: 'Jane Eyre',
+          author: 'Charlotte Brontë',
+          genre: 'Gothic',
+          year: '1847'
+        },
+        {
+          id: uuidv4(),
+          title: 'Crime and Punishment',
+          author: 'Fyodor Dostoevsky',
+          genre: 'Philosophical Fiction',
+          year: '1866'
+        },
+        {
+          id: uuidv4(),
+          title: 'The Hobbit',
+          author: 'J.R.R. Tolkien',
+          genre: 'Fantasy',
+          year: '1937'
+        },
+        {
+          id: uuidv4(),
+          title: 'Fahrenheit 451',
+          author: 'Ray Bradbury',
+          genre: 'Dystopian',
+          year: '1953'
         }
       ];
       setBooks(seedBooks);
