@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/YOUR_USERNAME/AWD1000-final-project",
+  "homepage": "https://github.com/asdqwezxcvbn/AWD1000-final-project",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

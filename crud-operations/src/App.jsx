@@ -9,6 +9,7 @@ function App() {
   const [books, setBooks] = useState([]);
   const [search, setSearch] = useState('');
   const [editBook, setEditBook] = useState(null);
+  const [bookToDelete, setBookToDelete] = useState(null);
 
   useEffect(() => {
     const storedBooks = JSON.parse(localStorage.getItem('books'));
@@ -99,7 +100,7 @@ function App() {
           author: 'Ray Bradbury',
           genre: 'Dystopian',
           year: '1953'
-        }
+        },
       ];
       setBooks(seedBooks);
       localStorage.setItem('books', JSON.stringify(seedBooks));
@@ -114,8 +115,17 @@ function App() {
     setBooks([...books, { ...book, id: uuidv4() }]);
   };
 
-  const deleteBook = (id) => {
-    setBooks(books.filter((book) => book.id !== id));
+  const confirmDelete = (id) => {
+    setBookToDelete(id);
+  };
+
+  const deleteBook = () => {
+    setBooks(books.filter((book) => book.id !== bookToDelete));
+    setBookToDelete(null);
+  };
+
+  const cancelDelete = () => {
+    setBookToDelete(null);
   };
 
   const updateBook = (updatedBook) => {
@@ -130,24 +140,23 @@ function App() {
   return (
     <div className="container py-5">
       <h1 className="text-center text-primary mb-4">📖 Book Manager 📖</h1>
-  
+
       {/* Book Form */}
       <div className="card shadow-sm mb-4">
         <div className="card-body">
-          <BookForm 
-            addBook={addBook} 
-            editBook={editBook} 
-            updateBook={updateBook} 
+          <BookForm
+            addBook={addBook}
+            editBook={editBook}
+            updateBook={updateBook}
           />
         </div>
       </div>
-  
+
       {/* Book List */}
       <div className="card shadow mb-4">
         <div className="card-body">
           <h4 className="card-title">Book List</h4>
-  
-          {/* Search Input - Now inside this card */}
+
           <div className="mb-3">
             <input
               type="text"
@@ -157,14 +166,34 @@ function App() {
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-  
-          <BookList 
-            books={filteredBooks} 
-            onDelete={deleteBook} 
-            onEdit={setEditBook} 
+
+          <BookList
+            books={filteredBooks}
+            onDelete={confirmDelete}
+            onEdit={setEditBook}
           />
         </div>
       </div>
+
+      {/* Confirmation Modal */}
+      {bookToDelete && (
+        <div className="modal fade show d-block" tabIndex="-1" role="dialog" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Confirm Delete</h5>
+              </div>
+              <div className="modal-body">
+                <p>Are you sure you want to delete this book?</p>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={cancelDelete}>Cancel</button>
+                <button type="button" className="btn btn-danger" onClick={deleteBook}>Continue</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
