@@ -24,55 +24,55 @@ function BookForm({ addBook, editBook, updateBook }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} class="mb-4">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h4 class="card-title text-center mb-4">
+    <form onSubmit={handleSubmit} className="mb-4">
+      <div className="card shadow-sm">
+        <div className="card-body">
+          <h4 className="card-title text-center mb-4">
             {editBook ? 'Edit Book' : 'Add New Book'}
           </h4>
-          <div class="row g-3">
-            <div class="col-md-3">
+          <div className="row g-3 align-items-center">
+            <div className="col-md-3">
               <input
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
-                class="form-control"
+                className="form-control"
                 placeholder="Title"
                 required
               />
             </div>
-            <div class="col-md-3">
+            <div className="col-md-3">
               <input
                 name="author"
                 value={formData.author}
                 onChange={handleChange}
-                class="form-control"
+                className="form-control"
                 placeholder="Author"
                 required
               />
             </div>
-            <div class="col-md-3">
+            <div className="col-md-2">
               <input
                 name="genre"
                 value={formData.genre}
                 onChange={handleChange}
-                class="form-control"
+                className="form-control"
                 placeholder="Genre"
                 required
               />
             </div>
-            <div class="col-md-2">
+            <div className="col-md-2">
               <input
                 name="year"
                 value={formData.year}
                 onChange={handleChange}
-                class="form-control"
+                className="form-control"
                 placeholder="Year"
                 required
               />
             </div>
-            <div class="col-md-1 d-grid">
-              <button type="submit" class="btn btn-primary btn-block mt-4">
+            <div className="col-md-2">
+              <button type="submit" className="btn btn-primary w-100">
                 {editBook ? 'Update' : 'Add'}
               </button>
             </div>

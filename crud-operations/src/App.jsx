@@ -10,6 +10,8 @@ function App() {
   const [search, setSearch] = useState('');
   const [editBook, setEditBook] = useState(null);
   const [bookToDelete, setBookToDelete] = useState(null);
+  const [bookToEdit, setBookToEdit] = useState(null); // Book being edited
+  const [showEditConfirmModal, setShowEditConfirmModal] = useState(false); // Show confirmation modal for editing
 
   useEffect(() => {
     const storedBooks = JSON.parse(localStorage.getItem('books'));
@@ -133,13 +135,28 @@ function App() {
     setEditBook(null);
   };
 
+  const handleEditBook = (book) => {
+    setBookToEdit(book);
+    setShowEditConfirmModal(true);
+  };
+
+  const confirmEdit = () => {
+    setEditBook(bookToEdit);
+    setShowEditConfirmModal(false);
+  };
+
+  const cancelEdit = () => {
+    setBookToEdit(null);
+    setShowEditConfirmModal(false);
+  };
+
   const filteredBooks = books.filter((book) =>
     book.title.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <div className="container py-5">
-      <h1 className="text-center text-primary mb-4">📖 Book Manager 📖</h1>
+      <h1 className="text-center mb-4">📖 Book Manager 📖</h1>
 
       {/* Book Form */}
       <div className="card shadow-sm mb-4">
@@ -155,7 +172,7 @@ function App() {
       {/* Book List */}
       <div className="card shadow mb-4">
         <div className="card-body">
-          <h4 className="card-title">Book List</h4>
+          <h4 className="card-title">📚 Book List 📚</h4>
 
           <div className="mb-3">
             <input
@@ -170,12 +187,12 @@ function App() {
           <BookList
             books={filteredBooks}
             onDelete={confirmDelete}
-            onEdit={setEditBook}
+            onEdit={handleEditBook}
           />
         </div>
       </div>
 
-      {/* Confirmation Modal */}
+      {/* Confirmation Modal for Deleting Book */}
       {bookToDelete && (
         <div className="modal fade show d-block" tabIndex="-1" role="dialog" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
           <div className="modal-dialog" role="document">
@@ -188,7 +205,27 @@ function App() {
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" onClick={cancelDelete}>Cancel</button>
-                <button type="button" className="btn btn-danger" onClick={deleteBook}>Continue</button>
+                <button type="button" className="btn btn-success" onClick={deleteBook}>Continue</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Confirmation Modal for Editing Book */}
+      {showEditConfirmModal && (
+        <div className="modal fade show d-block" tabIndex="-1" role="dialog" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Confirm Edit</h5>
+              </div>
+              <div className="modal-body">
+                <p>Are you sure you want to edit this book?</p>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={cancelEdit}>Cancel</button>
+                <button type="button" className="btn btn-success" onClick={confirmEdit}>Continue</button>
               </div>
             </div>
           </div>
